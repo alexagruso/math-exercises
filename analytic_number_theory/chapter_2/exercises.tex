@@ -1,0 +1,76 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage[headheight=0.25in,margin=1in]{geometry}
+
+\newcommand{\parens}[1]{\left( #1 \right)}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\solution}{\textbf{Solution:}}
+\newcommand{\proof}{\textbf{Proof:}}
+\newcommand{\done}{\ensuremath{
+    \strut\hfill\blacksquare
+}}
+
+\linespread{1.25}
+
+\begin{document}
+    \pagestyle{fancy}
+    \fancyhead[L]{Chapter 1}
+    \fancyhead[R]{Exercises}
+
+    \begin{itemize}
+        \item[1.)] Find all integers \( n \) that satisfy the following:
+        \begin{itemize}
+            \item [a.)] \( \phi(n) = n / 2 \)
+            \item [b.)] \( \phi(n) = \phi(2n) \)
+            \item [c.)] \( \phi(n) = 12 \)
+        \end{itemize}
+
+        \solution
+
+        \begin{itemize}
+            \item [a.)] \( n = 2^m \) where \( m \in \Z_{\geq 0} \)
+        \end{itemize}
+
+        \proof
+
+        \begin{itemize}
+            \item [a.)] Let \( n = 2^m \), then using theorem 2.5, we find that
+            \[
+                \phi(2^m) = 2^m - 2^{m - 1} = 2^{m - 1} = n / 2
+            \]
+            Next, suppose \( n \) is not a power of two and take its prime
+            factorization as \( \prod p_i^{a_i} \).
+            Using the fact that \( \phi \) is multiplicative, we find that
+            \[
+                \phi(n)
+                = \phi \parens{\prod p_i^{a_i}}
+                = \prod \phi(p_i^{a_i})
+            \]
+            Since \( n \) is not a power of two, there exists \( i \) where
+            \( p_i > 2 \) and \( a_i \geq 1 \), thus \( \phi()\)
+            Let \( b_i = \phi(p_i^{a_i}) \).
+
+            \[
+                \phi(n)
+                = b_1b_2b_3 \cdots
+            \]
+
+            \item [b.)] awd
+        \end{itemize}
+
+        \item [2.)] Prove or disprove the following statements:
+        \begin{itemize}
+            \item [a.)] If \( (m, n) = 1 \), then 
+        \end{itemize}
+    \end{itemize}
+\end{document}
