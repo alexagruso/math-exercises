@@ -28,7 +28,7 @@
     \fancyhead[R]{Exercises}
 
     \begin{itemize}
-        \item[1.)] Find all integers \( n \) that satisfy the following:
+        \item[1.)] Find all integers \( n \in \N \) that satisfy the following:
         \begin{itemize}
             \item [a.)] \( \phi(n) = n / 2 \)
             \item [b.)] \( \phi(n) = \phi(2n) \)
@@ -38,39 +38,90 @@
         \solution
 
         \begin{itemize}
-            \item [a.)] \( n = 2^m \) where \( m \in \Z_{\geq 0} \)
+            \item [a.)] \( n = 2^m \) where \( m \in \N \)
+
+            \item [b.)] \( (2, n) = 1 \)
         \end{itemize}
 
         \proof
 
         \begin{itemize}
-            \item [a.)] Let \( n = 2^m \), then using theorem 2.5, we find that
+            \item [a.)] Let \( n = 2^m \) where \( m \in \N \), thus
             \[
-                \phi(2^m) = 2^m - 2^{m - 1} = 2^{m - 1} = n / 2
+                \phi(2^m)
+                = 2^m - 2^{m - 1}
+                = 2^{m - 1}
+                = n / 2
+                .
             \]
-            Next, suppose \( n \) is not a power of two and take its prime
-            factorization as \( \prod p_i^{a_i} \).
-            Using the fact that \( \phi \) is multiplicative, we find that
+            Next, suppose \( n \) is not a power of two.
+            If \( n \) is odd, then \( \phi(n) \ne n / 2 \) as the codomain
+            of \( \phi \) is \( \N \), thus \( n \) must be even.
+            Take \( \prod p_i^{a_i} \) to be the prime factorization of
+            \( n \) extended over all primes.
+            Since \( \phi \) is multiplicative, we find that
             \[
                 \phi(n)
                 = \phi \parens{\prod p_i^{a_i}}
                 = \prod \phi(p_i^{a_i})
+                .
             \]
-            Since \( n \) is not a power of two, there exists \( i \) where
-            \( p_i > 2 \) and \( a_i \geq 1 \), thus \( \phi()\)
-            Let \( b_i = \phi(p_i^{a_i}) \).
-
+            Since \( n \) is even, we know that \( a_1 \geq 1 \), and since it
+            is not a power of two, we know there exists \( i \) where
+            \( p_i > 2 \) and \( a_i \geq 1 \).
+            Let \( b_i = \phi(p_i^{a_i}) \). If \( a_i = 0 \), thus
+            \( b_i = 1 \), otherwise
+            \( b_i = p_i^{a_i} - p_i^{a_i - 1} < p_i^{a_i} \), thus
+            \( b_1b_2b_3 < n \).
+            Using this, we find that
             \[
-                \phi(n)
-                = b_1b_2b_3 \cdots
+                \phi(n) = b_1 b_2 b_3 \cdots
+                = 2^{a_i - 1} b_2 b_3 \cdots
+                = \frac{2^{a_1} b_2 b_3 \cdots}{2}
+                < \frac{2^{a_1} 3^{a_2} 5^{a_3} \cdots}{2}
+                = \frac{n}{2}
+                ,
             \]
+            thus \( \phi(n) \ne n / 2 \).
+            \done
 
-            \item [b.)] awd
+            \item [b.)] Let \( n \in \N \) where \( (2, n) = 1 \).
+            Since \( \phi(2) = 1 \), we have that
+            \[
+                \phi(2n)
+                = \phi(2)\phi(n)
+                = \phi(n)
+                .
+            \]
+            Otherwise, if \( (2, n) = d \ne 1 \), then \( d = 2 \), thus
+            \[
+                \phi(2n)
+                = \phi(2)\phi(n)\frac{d}{\phi(d)}
+                = \phi(n)\frac{2}{\phi(2)}
+                = 2\phi(n)
+                \ne \phi(n)
+                ,
+            \]
+            which is true because \( \phi(n) > 0 \) for all \( n \in \N \).
+            \done
+
         \end{itemize}
 
         \item [2.)] Prove or disprove the following statements:
         \begin{itemize}
-            \item [a.)] If \( (m, n) = 1 \), then 
+            \item [a.)] If \( (m, n) = 1 \), then
+            \( (\phi(m), \phi(n)) = 1 \)
+
+            \item [b.)] If \( n \) is composite, then \( (n, \phi(n)) > 1 \)
+            
+            \item [c.)] If \( m \) and \( n \) have the same prime divisors,
+            then \( n\phi(m) = m\phi(n) \)
         \end{itemize}
+
+        \item [3.)] Prove that
+        \[
+            \frac{n}{\phi(n)}
+            = \sum_{d \mid n} \frac{\mu^2(d)}{\phi(d)}
+        \]
     \end{itemize}
 \end{document}
