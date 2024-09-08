@@ -1,0 +1,81 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage[headheight=1in,margin=1in]{geometry}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\braceb}[1]{\left\{#1\right\}}
+\newcommand{\bracketb}[1]{\left[#1\right]}
+\newcommand{\parenb}[1]{\left(#1\right)}
+\newcommand{\vertb}[1]{\left\vert#1\right\vert}
+
+\newcommand{\done}{\ensuremath{\strut\hfill\blacksquare}}
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhead[L]{p-Adic Numbers and Valuation Theory}
+\fancyhead[R]{Bachman}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0.25in}
+
+\section{Valuations of Rank One}
+
+\subsection{p-Adic Valuations of \( \Q \)}
+
+The absolute value is an example of a rank one valuation.
+For example, the absolute value of a rational number satisfies the following
+properties:
+
+\begin{itemize}
+	\item[1.)] Non-degeneracy:
+	\[
+		x \in \Q \implies \vertb{x} \geq 0
+		\ \text{and}\ 
+		\vertb{x} = 0 \iff x = 0
+	\]
+
+	\item[2.)] Multiplicative:
+	\[
+		x,y \in \Q \implies \vertb{x} \vertb{y} = \vertb{xy}
+	\]
+
+	\item[3.)] Triangle Inequality:
+	\[
+		x,y \in \Q \implies \vertb{x + y} \leq \vertb{x} + \vertb{y}
+	\]
+\end{itemize}
+
+
+We will now motivate the construction of a stronger valuation on \( \Q \).
+
+\textbf{Theorem:} Consider a rational number \( x \).
+Fixing some prime number \( p \), we can represent \( x \) as follows:
+\[
+	x = p^\alpha \frac{a}{b},
+\]
+where \( a,b,\alpha \in \Z \), \( p \nmid a \), and \( p \nmid b \).
+
+\textit{Proof:} Fix a prime number \( p \) and \( x \in \Q \) where
+\( x \ne 0 \) and \( x = c/d \) for \( c,d \in \Z \).
+Let \( \beta_1 \) and \( \beta_2 \) be the highest powers of \( p \) that
+divide \( c \) and \( d \) respectively, then
+\[
+	x = \frac{c}{d} = \frac{p^{\beta_1}a}{p^{\beta_2}b}
+	= p^{\beta_1 - \beta_2} \frac{a}{b}.
+\]
+Clearly \( \beta_1 - \beta_2 \in \Z \), and \( p \nmid a \) and
+\( p \nmid b \), so we have obtained our desired form for \( x \).
+\done
+
+
+\end{document}
