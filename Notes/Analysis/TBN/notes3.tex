@@ -1,0 +1,76 @@
+\documentclass[12pt]{article}
+
+\pagenumbering{gobble}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage[headheight=1in,margin=1in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\usepackage{mathtools}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\e}{\varepsilon}
+
+\newcommand{\angleb}[1]{\left\langle#1\right\rangle}
+\newcommand{\braceb}[1]{\left\{#1\right\}}
+\newcommand{\bracketb}[1]{\left[#1\right]}
+\newcommand{\parenb}[1]{\left(#1\right)}
+\newcommand{\vertb}[1]{\left\vert#1\right\vert}
+
+\newcommand{\done}{\ensuremath{\strut\hfill\blacksquare}}
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhead[L]{Analysis}
+\fancyhead[C]{Alex Agruso}
+\fancyhead[R]{Notes}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0.1in}
+
+\section*{The Exterior Measure}
+
+\textbf{Definition:} Let \( E \subseteq \R^d \), then the
+\textbf{exterior measure} \( m_* \) of \( E \) is defined as
+\[
+	m_*(E) = \inf \sum_{j = 1}^\infty \vertb{Q_j},
+\]
+where \( \braceb{Q_j} \) is a countable covering of \( E \) using closed cubes.
+
+We have that \( m_*(E) \geq 0 \) for any \( E \subseteq \R^d \).
+For any point \( x \in \R^d \), we have that \( m_*(\braceb{x}) = 0 \); since
+any point is a closed cube, it covers itself and thus contains a countable
+cover. Since \( \vertb{\braceb{x}} = 0 \), we have that
+\( m_*(\braceb{x}) = 0 \).
+We also have that \( m_*(\varnothing) = 0 \), as any covering covers
+\( \varnothing \), and since some coverings have zero volume, we have that
+\( m_*(\varnothing) \leq 0 \), and thus \( = 0 \).
+
+Let \( Q \subset \R^d \) be a closed cube, then \( m_*(Q) = \vertb{Q} \).
+We obviously have that \( m_*(Q) \leq \vertb{Q} \).
+Now consider an arbitrary covering \( \mathcal{Q} \) where
+\[
+	Q \subseteq \bigcup_{j = 1}^\infty Q_j.
+\]
+Fix \( \varepsilon > 0 \), and for each \( Q_j \in \mathcal{Q} \), choose
+an open cube \( S_j \) such that \( Q_j \subset S_j\) and
+\( \vertb{S_j} \leq (1 + \varepsilon)\vertb{Q_j} \).
+Since \( Q \) is compact and \( \braceb{S_j} \) is an open cover
+of \( Q \), we have a finite subcover \( \mathcal{S} \subseteq \braceb{S_j} \).
+We have that \( m_*() \)...
+
+Let \( Q \subseteq \R^d \) be any open cube, then \( m_*(Q) = \vertb{Q} \).
+
+Given a rectangle \( R \subset \R^d \), we have \( m_*(R) = \vertb{R} \).
+
+\( m_*(\R^d) = \infty \).
+
+\end{document}
