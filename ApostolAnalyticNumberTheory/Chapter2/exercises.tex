@@ -1,0 +1,125 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{cite}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage[headheight=1in,margin=1.25in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\usepackage{mathtools}
+\usepackage{setspace}
+
+\usepackage{tikz}
+
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\newcommand{\e}{\ensuremath{\varepsilon}}
+\renewcommand{\d}{\ensuremath{\delta}}
+
+\newcommand{\angleb}[1]{\left\langle#1\right\rangle}
+\newcommand{\braceb}[1]{\left\{#1\right\}}
+\newcommand{\bracketb}[1]{\left[#1\right]}
+\newcommand{\parenb}[1]{\left(#1\right)}
+\newcommand{\vertb}[1]{\left\vert#1\right\vert}
+\newcommand{\dvertb}[1]{\left\Vert#1\right\Vert}
+
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+
+\newcommand{\comp}{\complement}
+\newcommand{\sdiff}{\setminus}
+
+\newcommand{\proof}{\textit{Proof: }}
+\newcommand{\partialdone}{\ensuremath{\strut\hfill\blacktriangle}}
+\newcommand{\done}{\ensuremath{\strut\hfill\blacksquare}}
+
+\newcommand{\mc}[1]{\ensuremath{\mathcal{#1}}}
+
+\renewcommand{\t}[1]{\text{ #1 }}
+\newcommand{\impl}{\ensuremath{\implies}}
+\newcommand{\sectionskip}{\vspace{0.15in}}
+\newcommand{\tri}{\triangle}
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhead[L]{Ahlfors}
+\fancyhead[C]{Complex Analysis}
+\fancyhead[R]{Chapter 1}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0.1in}
+\setstretch{1}
+
+\textbf{1.)} For each equation below, find all solutions for \( n \in \N \).
+\begin{itemize}
+	\item [(a)] \( \phi(n) = n / 2 \)
+	\item [(b)] \( \phi(n) = \phi(2n) \)
+	\item [(c)] \( \phi(n) = 12 \)
+\end{itemize}
+
+\textit{Solution:}
+We first show that (a) is true if and only if \( n \) is a power of two.
+Fix \( n = 2^m \) where \( m \in \N \), then
+\[
+	\phi(n) = \phi(2^m) = 2^m - 2^{m - 1} = 2^{m - 1} = n / 2.
+\]
+Next, suppose \( n \) is not a power of two.
+If \( n \) is odd, then \( n / 2 \) is not an integer, and thus cannot be the
+result of \( \phi(n) \).
+This forces \( n \) to be even.
+Let \( \prod_{i \in \N} p_i^{a_i} \) be the prime factorization of \( n \).
+Since \( \phi \) is multiplicative, and since powers of distinct primes are
+relatively prime, we have that
+\[
+	\phi(n)
+	= \phi\parenb{\prod_{i \in \N} p_i^{a_i}}
+	= \prod_{i \in \N} \phi(p_i^{a_i}).
+\]
+Additionally, because \( n \) is even, we know that \( a_1 \geq 1 \), and since
+it is not a power of two, we know there exists \( i \) where \( p_i > 2 \) and
+\( a_i \geq 1 \).
+We also know that \( \phi(p_i^{a_i}) < p_i^{a_i} \) for all \( i \), thus we
+have
+\[
+	\phi(n)
+	= \prod_{i \in \N} \phi(p_i^{a_i})
+	= \phi(2^{a_1}) \prod_{i \geq 2} \phi(p_i^{a_i})
+	= 2^{a_1 - 1} \prod_{i \geq 2} \phi(p_i^{a_i})
+	< \frac{2^{a_1} \prod_{i \geq 2} p_i^{a_i}}{2}
+\]
+\[
+	= \frac{\prod_{i \in \N} p_i^{a_i}}{2}
+	= \frac{n}{2}.
+\]
+The inequality is strict, thus showing that \( \phi(n) \ne n/2 \).
+This proves the case of (a).
+\partialdone
+
+Next, we show that (b) holds only for \( n \) that are relatively prime to 2.
+Let \( n \in \N \) and assign \( d = (2,n) \).
+If \( d = 1 \), the multiplicity of \( \phi \) gives us
+\[
+	\phi(2n)
+	= \phi(2)\phi(n)
+	= \phi(n).
+\]
+Otherwise, assume \( d \ne 1 \).
+Since \( d \) must divide 2, we know that \( d = 2 \), thus
+\[
+	\phi(2n)
+	= \phi(2)\phi(n)\frac{d}{\phi(d)}
+	= \phi(n)\frac{2}{\phi(2)}
+	= 2\phi(n)
+	\ne \phi(n).
+\]
+This holds because \( \phi(n) > 0 \) for all \( n \in \N \), thus proving (b).
+\done
+
+\end{document}
