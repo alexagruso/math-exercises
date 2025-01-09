@@ -187,7 +187,6 @@ The following picture demonstrates this:
 		\draw [fill] (-0.5,-0.866) circle [radius=1pt];
 		\draw [dotted,thick] (0,0) -- (-0.5,-0.866);
 		\node [below left] at (-0.5,-0.866) {\( (-1/2, -\sqrt{3}) \)};
-
 	\end{tikzpicture}
 \end{center}
 Since multiplication of two complex numbers adds their angles and multiplies
@@ -196,5 +195,107 @@ their magnitudes, it is easy to see that the equation holds.
 
 \section*{Section 1.2}
 
+\textbf{1.)}
+
+\textbf{2.)}
+
+\textbf{3.)}
+
+\textbf{4.)}
+
+\section*{Section 1.3}
+
+\textbf{1.)}
+The set of all matrices of the form
+\[
+	\begin{bmatrix*}[r]
+		a & b \\ -b & a
+	\end{bmatrix*},
+\]
+where \( a, b \in \R \), combined with the operations of matrix addition and
+multiplication, is isomorphic to \C.
+
+\proof
+Denoting the above set as \( F \), we define a function \( \phi : F \to \C \)
+where
+\[
+	\phi\parenb{
+		\begin{bmatrix*}[r]
+			a & b \\ -b & a
+		\end{bmatrix*}
+	} = a + bi.
+\]
+Fixing two matrices in \( F \), we see that the following are true:
+\[
+	\phi\parenb{
+		\begin{bmatrix*}[r]
+			a & b \\ -b & a
+		\end{bmatrix*}
+		+
+		\begin{bmatrix*}[r]
+			c & d \\ -d & c
+		\end{bmatrix*}
+	}
+	= \phi\parenb{
+		\begin{bmatrix*}[r]
+			a + c & b + d \\ -b - d & a + c
+		\end{bmatrix*}
+	}
+	= a + c + (b + d)i
+\]
+\[
+	= (a + bi) + (c + di)
+	= \phi\parenb{
+		\begin{bmatrix*}[r]
+			a & b \\ -b & a
+		\end{bmatrix*}
+	}
+	+ \phi\parenb{
+		\begin{bmatrix*}[r]
+			c & d \\ -d & c
+		\end{bmatrix*}
+	},
+\]
+and
+\[
+	\phi\parenb{
+		\begin{bmatrix*}[r]
+			a & b \\ -b & a
+		\end{bmatrix*}
+		\begin{bmatrix*}[r]
+			c & d \\ -d & c
+		\end{bmatrix*}
+	}
+	= \phi\parenb{
+		\begin{bmatrix*}[r]
+			ac - bd & ad + bc \\ -ad - bc & ac - bd
+		\end{bmatrix*}
+	}
+	= ac - bd + (ad + bc)i
+\]
+\[
+	= (a + bi)(c + di)
+	= \phi\parenb{
+		\begin{bmatrix*}[r]
+			a & b \\ -b & a
+		\end{bmatrix*}
+	}
+	\phi\parenb{
+		\begin{bmatrix*}[r]
+			c & d \\ -d & c
+		\end{bmatrix*}
+	}.
+\]
+Since \( \phi \) is obviously a bijection, we have shown that \( F \cong \C \).
+\done
+
+\textbf{2.)}
+We have that \( \R[X]/(X^2 + 1) \cong \C \).
+
+\proof
+We know that this is a field since \( X^2 + 1 \) is clearly irreducible in
+\( \R[X] \).
+Additionally, we know that this field is equal to the set
+\( \braceb{a + bX : a, b \in \R} \),
 
 \end{document}
