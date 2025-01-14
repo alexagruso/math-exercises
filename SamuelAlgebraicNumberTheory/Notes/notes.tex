@@ -1,0 +1,481 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{cite}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage[headheight=1in,margin=1.25in]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+\usepackage{mathtools}
+\usepackage{scalerel}
+\usepackage{setspace}
+
+\usepackage{tikz}
+
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\newcommand{\e}{\ensuremath{\varepsilon}}
+\renewcommand{\d}{\ensuremath{\delta}}
+
+\newcommand{\angleb}[1]{\left\langle#1\right\rangle}
+\newcommand{\braceb}[1]{\left\{#1\right\}}
+\newcommand{\bracketb}[1]{\left[#1\right]}
+\newcommand{\parenb}[1]{\left(#1\right)}
+\newcommand{\vertb}[1]{\left\vert#1\right\vert}
+\newcommand{\dvertb}[1]{\left\Vert#1\right\Vert}
+
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+
+\renewcommand{\Re}{\text{Re}}
+\renewcommand{\Im}{\text{Im}}
+
+\newcommand{\comp}{\complement}
+\newcommand{\sdiff}{\setminus}
+
+\newcommand{\solution}{\textit{Solution: }}
+\newcommand{\proof}{\textit{Proof: }}
+\newcommand{\partialdone}{\ensuremath{\strut\hfill\blacktriangle}}
+\newcommand{\done}{\ensuremath{\strut\hfill\blacksquare}}
+
+\newcommand{\mc}[1]{\ensuremath{\mathcal{#1}}}
+
+\renewcommand{\t}[1]{\text{ #1 }}
+\newcommand{\impl}{\ensuremath{\implies}}
+\newcommand{\sectionskip}{\vspace{0.15in}}
+\newcommand{\tri}{\triangle}
+\newcommand{\ovl}[1]{\ensuremath{\overline{#1}}}
+
+\begin{document}
+
+\pagestyle{fancy}
+\fancyhead[L]{Samuel}
+\fancyhead[C]{Algebraic Number Theory}
+\fancyhead[R]{Chapter 1}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0.1in}
+\setstretch{1}
+
+\section*{Preliminaries}
+
+We define the natural numbers \( \N \) to be the strictly positive integers.
+That is, \( \N = \braceb{n \in \Z : n > 0} \).
+We additionally define \( \N_0 = \N \cup \braceb{0} \).
+
+Unless otherwise stated, all rings are commutative and contain a 1.
+
+Given a ring \( R \) and two ideals \( I \) and \( J \) of \( R \), define
+their sum and product as follows:
+\[
+	I + J = \braceb{a + b : i \in a \t{and} b \in J},
+\]
+and
+\[
+	IJ = \braceb{
+		\sum_{k = 1}^n a_kb_k : a_k \in I, b_k \in J, \t{and} n \in \N
+	}.
+\]
+We can generalize the product of ideals to finite collections of ideals.
+Let \( I_1, I_2, \dots, I_m \) be ideals of a ring \( R \), then we define
+their product as follows:
+\[
+	I_1I_2 \cdots I_m = \braceb{
+		\sum_{k = 1}^n \parenb{\prod_{l = 1}^m a_{k,l}}
+		: a_{k,l} \in I_k \t{and} n \in \N
+	}
+\]
+As a special case, the power ideal \( I^m \) is defined for \( m \in \N \) as
+follows:
+\[
+	I^m = \braceb{
+		\sum_{k = 1}^n \parenb{\prod_{l = 1}^m a_{k,l}}
+		: a_{k,l} \in I \t{and} n \in \N
+	}
+\]
+
+Given a ring \( R \) and an arbitrary indexing set \( I \), we define
+\( R^{(I)} \) as the set of collections \( \braceb{a_i}_{i \in I} \) of
+elements of \( R \) such that \( a_i = 0 \) for almost all \( i \in I \).
+We can endow this set with an \( R \)-module structure by defining
+componentwise addition and scalar multiplication.
+
+We define \( \d_{i,j} \) as follows:
+\[
+	\d_{i,j} = \begin{cases}
+		1 & \t{if} i = j  \\
+		0 & \t{otherwise}
+	\end{cases}
+\]
+Additionally, for the \( R \)-module \( R^{(I)} \), we define the elements
+\( e_i = \braceb{d_{i,j}}_{j \in I} \) and denote
+\( \braceb{e_i}_{i \in I} \) as the canonical basis for \( R^{(I)} \).
+
+Given an \( R \)-module \( M \), it is understand that \( 0 \) serves as the
+identity element of the abelian group \( M \).
+
+\section*{1.1 Divisibility in Principal Ideal Rings}
+
+\textbf{Proposition 1.1:}
+\( \Z \) is a principal ideal domain.
+
+\proof
+Let \( I \) be a nonzero ideal in \( \Z \), then we can choose a nonzero
+element \( b \in I \).
+If \( b < 0 \), then \( b^2 > 0 \) and \( I \) has a positive element, thus
+without loss of generality we can assume \( b > 0 \).
+By the well ordering principle, we can also assume that \( b \) is minimal
+among the positive integers in \( I \).
+Now, fix an arbitrary element \( x \in I \).
+Since \( \Z \) is a Euclidean domain, we have unique integers \( q \) and
+\( r \) such that \( x = qb + r \), and where \( 0 \leq r < b \).
+Consequently, we have that \( r = x - qb \in I \) since \( I \) is closed under
+addition.
+If \( r > 0 \), then we have found a positive integer in \( I \) that is
+less than \( b \), a contradiction to our assumption, hence we must have
+\( r = 0 \).
+This shows that all elements in \( I \) are multiples of \( b \), and thus
+\( I = (b) \) and is a principal ideal.
+\done
+
+\textbf{Proposition 1.2:}
+If \( K \) is a field, then \( K[X] \) is a principal ideal domain.
+
+\proof
+Fix a nonzero ideal \( I \) in \( K[X] \).
+Let \( d \) be the minimal nonzero degree of any element in \( I \), and let
+\( b \) be an element in \( I \) with degree \( d \).
+Letting \( x \) be any element in \( I \), we can use the fact that \( K[X] \)
+is a Euclidean domain to find unique elements \( q, r \in I \) where
+\( x = qb + r \), and where \( 0 \leq \deg(r) < \deg(b) \).
+By closure, we have that \( r = x - qb \in I \), which combined with our
+assumption on \( \deg(b) \) forces \( \deg(r) = 0 \).
+Thus, any element \( x \in I \) is a multiple of \( b \), meaning that
+\( I = (b) \) and is thus principal.
+\done
+
+\section*{1.2 Diophantine Equations}
+
+\textbf{Theorem 1.3:}
+We have that \( x, y, z \in \N \) satisfy the equation \( x^2 + y^2 = z^2 \)
+if and only if there exists an integer \( d \) and relatively prime integers
+\( u \) and \( v \) such that, after possible rearrangement of \( x \) and
+\( y \):
+\[
+	x = d(u^2 - v^2), \quad
+	y = 2duv, \quad\text{and}\quad
+	z = d(u^2 + v^2).
+\]
+
+\proof
+The backwards direction is easy to see, as
+\[
+	x^2 + y^2
+	= [d(u^2 - v^2)]^2 + (2duv)^2
+	= d^2(u^4 - 2u^2v^2 + v^4) + d^2(4u^2v^2)
+\]
+\[
+	= d^2(u^4 + 2u^2v^2 + v^4)
+	= d^2(u^2 + v^2)^2
+	= z^2.
+\]
+Conversely, let \( x, y, z \in \N \) satisfy the equation.
+We can, without loss of generality, assume that they are pairwise relatively
+prime, since otherwise we can divide out by their gcd.
+\partialdone
+
+\textbf{Theorem 1.4:}
+There exist no integers \( x, y, z \in \N \) that satisfy the equation
+\[
+	x^4 + y^4 = z^2.
+\]
+
+\proof
+\partialdone
+
+\textbf{Corollary 1.5:}
+There exist no integers \( x, y, z \in \N \) that satisfy the equation
+\[
+	x^4 + y^4 = z^4.
+\]
+
+\proof
+\partialdone
+
+\section*{1.3 Lemmas on Ideals and Euler's \( \phi \)-function}
+
+\textbf{Proposition 1.6:}
+Fix natural numbers \( q \) and \( n \), and denote \( \tilde{q} \) as the
+residue class \( q + n\Z \).
+We have that the following are equivalent:
+\begin{enumerate}[(a)]
+	\item \( \gcd(q,n) = 1 \)
+
+	\item \( \tilde{q} \) is a unit in the ring \( \Z/n\Z \)
+
+	\item \( \tilde{q} \) generates the additive group \( \Z/n\Z \)
+\end{enumerate}
+As a corollary, we have that \( \phi(n) \) is equal to the number of units
+in the ring \( \Z/n\Z \), as well as the number of generators of the additive
+group \( \Z/n\Z \).
+
+\proof
+We will prove that (a) \impl (b) \impl (c) \impl (a).
+We also choose \( q \) to be the unique representative of \( \tilde{q} \)
+where \( 0 \leq q \leq n - 1 \).
+
+First, assume (a).
+By Bezout's lemma, there exist integers \( x \) and \( y \) such that
+\( qx + ny = 1 \).
+We thus have that \( qx \equiv 1 \pmod{n} \), which is equivalent to
+\( \tilde{q} \cdot \tilde{x} = \tilde{1} \).
+This proves (a) \impl (b), and so we now assume that \( \tilde{q} \) is a unit
+in \( \Z/n\Z \).
+Choose \( \tilde{x} \in \Z/n\Z \) such that
+\( \tilde{q} \cdot \tilde{x} = \tilde{1} \), then for arbitrary
+\( \tilde{a} \in \Z/n\Z \) we have
+\( \tilde{a} = \tilde{a} \cdot \tilde{x} \cdot \tilde{q} \).
+This is equivalent to \( \tilde{a} = (ax)\tilde{q} \), which shows that
+\( \tilde{q} \) generates all elements in \( \Z/n\Z \), and (b) \impl (c).
+Finally, assume \( \tilde{q} \) to be a generator for \( \Z/n\Z \), then
+there exists an integer \( x \) where \( x\tilde{q} = \tilde{1} \), but this
+means that \( xq \equiv 1 \pmod{n} \).
+We can choose an integer \( y \) such that \( xq - 1 = yn \), which implies
+that \( xq - yn = 1 \).
+By Bezout's lemma, this implies that \( \gcd(q,n) = 1 \), thus showing
+(c) \impl (a) and completing the proof.
+\done
+
+\textbf{Lemma 1.7:}
+Let \( R \) be a ring and let \( I \) and \( J \) be ideals of \( R \) such
+that \( I + J = R \), then we have that \( I \cap J = IJ \) and
+\( R/IJ \cong R/I \times R/J \).
+
+\proof
+We have that \( IJ \subseteq I \) since \( I \) absorbs multiplication from
+\( J \).
+Similarly, \( IJ \subseteq J \), and thus \( IJ \subseteq I \cap J \).
+Fix an element \( x \in I \cap J \).
+By assumption, \( I + J = R \), and so there exist elements \( a \) and \( b \)
+in \( I \) and \( J \), respectively, such that \( a + b = 1 \), hence we
+obtain the equality \( x = xa + xb \).
+This means that \( x \) is an element of \( IJ \), and thus
+\( IJ \subseteq I \cap J \).
+A a result, we have \( IJ = I \cap J \).
+
+Next, we consider the ring homomorphism \( \theta : R \to R/I \times R/J \),
+which we define as \( \theta(a) = (a + I, a + J) \).
+Since \( a + I = I \) and \( a + J = J \) if and only if \( a \in I \cap J \),
+we have that \( \ker\theta = I \cap J = IJ \).
+This shows that, if \( a + IJ \) and \( b + IJ \) are equivalent elements of
+\( R/IJ \), then \( \theta(a) = \theta(b) \).
+We can thus define a function \( \phi : R/IJ \to R/I \times R/J \), defined
+as \( \phi(a + IJ) = \theta(a) = (a + I, a + J) \).
+It is easy to verify that \( \phi \) is a homomorphism.
+Additionally, if \( a \in \ker\theta \), then
+\( \phi(a + IJ) = \theta(a) = (I,J) \), which shows that
+\( \ker\phi = \braceb{0 + IJ} \), and thus \( \phi \) is injective.
+Finally, fix \( (y + I, z + J) \in R/I \times R/J \), and again take \( a \)
+and \( b \) as elements in \( I \) and \( J \), respectively, such that
+\( a + b = 1 \).
+Defining the element \( x \in R \) as \( x = az + by \), we can see that
+\[
+	x \equiv by \equiv (1 - a)y \equiv y - ay \equiv y \pmod{a},
+\]
+as well as
+\[
+	x \equiv az \equiv (1 - b)z \equiv z - bz \equiv z \pmod{b}.
+\]
+This shows that
+\[
+	\phi(x + IJ) = \theta(x) = (x + I, x + J) = (y + I, z + I),
+\]
+thus \( \phi \) is surjective, hence an isomorphism, and
+\( R/IJ \cong R/I \times R/J \).
+\done
+
+\textbf{Lemma 1.8:}
+Let \( R \) be a ring and let \( I_1, I_2, \dots, I_n \) be ideals of \( R \)
+such that \( I_i + I_j = R \) for all \( 1 \leq i < j \leq n \).
+We have that
+\( A/I_1I_2 \cdots I_n \cong A/I_1 \times A/I_2 \times \cdots \times A/I_n \).
+
+\proof
+The previous lemma proves the case for \( n = 2 \).
+We now use induction on \( n \) and assume the case for \( n - 1 \) holds.
+Define the ideal \( J = I_2I_3 \cdots I_n \) in \( R \).
+Note that for \( 2 \leq k \leq n \), we have \( J \subseteq I_k \) and
+\( I_1 + I_k = R \), thus we can find elements \( a_k \in I_1 \) and
+\( b_k \in J \) such that \( a_k + b_k = 1 \), and thus
+\[
+	1 = \prod_{k = 2}^n (a_k + b_k).
+\]
+Using this we obtain the equality \( 1 = c + a_2a_3 \cdots a_n \), where
+\( c \) is the sum of the terms in the product that contain at least one
+\( b_k \).
+This implies that \( c \in I_1 \), and thus
+\( 1 = c + a_2a_3 \cdots a_n \in I_1 + J \).
+Because \( I_1 + J \) is an ideal that contains 1, we know that
+\( I_1 + J = R \).
+
+By the previous lemma, we have
+\[
+	A/I_1J \cong A/I_1 \times A/J,
+\]
+and invoking the induction hypothesis, we can see that
+\[
+	A/J
+	= A/I_2I_3 \cdots I_n
+	\cong A/I_2 \times A/I_3 \times \cdots \times A/I_n,
+\]
+thus we have that
+\[
+	A/I_1I_2 \cdots I_n
+	= A/I_1J
+	\cong A/I_1 \times A/J
+	\cong A/I_1 \times A/I_2 \times \cdots \times A/I_n,
+\]
+completing the proof.
+\done
+
+\textbf{Proposition 1.9:}
+Let \( m \) and \( n \) be relatively prime integers, then we have that
+\( \Z/(mn)\Z \cong \Z/m\Z \times \Z/n\Z \).
+
+\proof
+By Bezout's lemma, there exist integers \( x \) and \( y \) such that
+\[
+	xm + yn = 1,
+\]
+which means that the ideal \( m\Z + n\Z \) contains 1, and thus is equal
+to \( \Z \).
+Applying \textbf{Lemma 1.7}, we obtain
+\[
+	\Z/(mn)\Z
+	= \Z/(m\Z n\Z)
+	\cong \Z/m\Z \times \Z/n\Z.
+\]
+\done
+
+\textbf{Corollary 1.10:}
+If \( m \) and \( n \) are relatively prime, then
+\( \phi(mn) = \phi(m)\phi(n) \).
+
+\proof
+We previously established that \( \phi(mn) \) is equal to the number of units
+in \( \Z/mn\Z \), and thus the number of units in \( \Z/m\Z \times \Z/n\Z \).
+Since an element \( (a,b) \in \Z/m\Z \times \Z/n\Z \) is a unit if and only if
+\( a \) and \( b \) are units in their respective rings, we have exactly
+\( \phi(m)\phi(n) \) choices for units in \( \Z/m\Z \times \Z/n\Z \), thus
+proving the equality.
+\done
+
+\textbf{Corollary 1.11:}
+For fixed \( n \in \N \), let \( p_1^{a_1}p_2^{a_2} \cdots p_m^{a_m} \) be its
+prime factorization, then we have that
+\[
+	\phi(n) = n\prod_{k = 1}^m \parenb{1 - \frac{1}{p_k}}.
+\]
+
+\proof
+Since powers of distinct primes are always relatively prime, we have that
+\( p_i^{a_i}\Z + p_j^{a_j}\Z = \Z \) for all \( 1 \leq i < j \leq m \).
+Additionally, \( \Z/n\Z \) has \( \phi(n) \) units.
+Furthermore, we have that
+\[
+	\Z/n\Z
+	\cong \Z/p_1^{a_1}\Z p_2^{a_2}\Z \cdots p_m^{a_m}\Z
+	\cong \Z/p_1^{a_1}\Z
+	\times \Z/p_2^{a_2}\Z
+	\times \cdots \times \Z/p_m^{a_m}\Z,
+\]
+but the number of units in the right hand side is equal to
+\( \phi(p_1^{a_1})\phi(p_2^{a_2}) \cdots \phi(p_m^{a_m}) \).
+Thus, we have that
+\[
+	\phi(n)
+	= \prod_{k = 1}^m \phi(p_k^{a_k})
+	= \prod_{k = 1}^m p_k^{a_k} - p_k^{a_k - 1}
+	= \prod_{k = 1}^m p_k^{a_k}\parenb{1 - \frac{1}{p_k}}
+	= \prod_{k = 1}^m p_k^{a_k} \prod_{k = 1}^n \parenb{1 - \frac{1}{p_k}}
+\]
+\[
+	= n\prod_{k = 1}^m \parenb{1 - \frac{1}{p_k}}.
+\]
+\done
+
+\section*{1.4 Preliminaries on Modules}
+
+\textbf{Proposition 1.12:}
+Let \( R \) be a ring, \( I \) an indexing set, and \( M \) an \( R \)-module.
+Additionally, let \( \braceb{m_i}_{i \in I} \) be a fixed collection of
+elements in \( M \), and let \( a = \braceb{a_i}_{i \in I} \) be an element in
+\( R^{(I)} \).
+We have that the function \( \phi : R^{(I)} \to M \), defined as
+\[
+	\phi(a) = \sum_{i \in I} a_im_i,
+\]
+is an \( R \)-module homomorphism.
+Furthermore, the following are true:
+\begin{enumerate}[(a)]
+	\item \( \braceb{m_i}_{i \in I} \) is linearly independent if and only if
+	      \( \phi \) is injective
+
+	\item \( \braceb{m_i}_{i \in I} \) generates \( M \) if and only if
+	      \( \phi \) is surjective
+\end{enumerate}
+
+\proof
+Let \( a = \braceb{a_i}_{i \in I} \) and \( b = \braceb{b_i}_{i \in I} \) be
+elements in \( R^{(I)} \).
+We can see that
+\[
+	\phi(a + b)
+	= \sum_{i \in I} (a_i + b_i)m_i
+	= \sum_{i \in I} a_im_i + \sum_{i \in I} b_im_i
+	= \phi(a) + \phi(b),
+\]
+and for \( r \in R \), we have that
+\[
+	\phi(ra)
+	= \sum_{i \in I} ra_im_i
+	= r\sum_{i \in I} a_im_i
+	= r\phi(a).
+\]
+Note that we can factor the \( r \) out of the sum since only finitely many
+terms are nonzero.
+Thus, we have shown that \( \phi \) is an \( R \)-module homomorphism.
+
+Next, assume that the \( m_i \) are linearly independent.
+Letting \( a, b \in R^{(I)} \) where \( \phi(a) = \phi(b) \), we see that
+\[
+	\sum_{i \in I} a_im_i = \sum_{i \in I} b_im_i,
+\]
+and thus
+\[
+	\sum_{i \in I} (a_i - b_i)m_i = 0.
+\]
+The linear independence of the \( m_i \) force \( a_i - b_i = 0 \) for all
+\( i \in I \), hence \( a_i = b_i \) and \( a = b \), which shows the
+injectivity of \( \phi \).
+Conversely, assume \( \phi \) is injective.
+It is easy to see that \( \phi(0) = \braceb{0}_{i \in I} \), as
+\[
+	\phi(0) = \sum_{i \in I} 0m_i = 0.
+\]
+Additionally, if we have \( a \in R^{(I)} \) such that \( \phi(a) = 0 \), then
+by the injectivity of \( \phi \) we have that \( a = 0 \), and thus
+\( a_i = 0 \) for all \( i \in I \).
+
+Moving on to (b), we assume that \( \braceb{m_i}_{i \in I} \) generates
+\( M \).
+This means that, for all \( m \in M \), we have \( m = \sum_{i \in I} a_im_i \)
+for
+
+\end{document}
