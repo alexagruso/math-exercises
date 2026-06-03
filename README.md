@@ -1,8 +1,9 @@
 # Math Exercises
 
-Exercises from various math books I'm working through, all in beautiful LaTeX.
+Exercises from various math books I'm working through.
 
 ## Current Books
 
-- Advanced Linear Algebra, Springer
 - Complex Analysis, Ahlfors
+- Analytic Number Theory, Apostol
+- Arithmetic Dynamics, Silverman
